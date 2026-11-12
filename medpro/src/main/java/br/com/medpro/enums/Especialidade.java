@@ -1,4 +1,4 @@
-package br.com.medpro.enum;
+package br.com.medpro.enums;
 
 public enum Especialidade {
         CADIOLOGIA,
