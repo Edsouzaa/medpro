@@ -3,6 +3,7 @@ package br.com.medpro.model.entity;
 import org.springframework.data.annotation.Id;
 
 import br.com.medpro.enums.Especialidade;
+import br.com.medpro.model.dto.DadosAtualizacaoMedico;
 import br.com.medpro.model.dto.DadosCadastroMedico;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -39,6 +40,8 @@ public class Medico {
     @Embedded
     private Endereco endereco;
 
+    private TinyInt ativo;
+
     public Medico(DadosCadastroMedico dados){
         this.nome = dados.nome();
         this.email = dados.email();
@@ -47,5 +50,27 @@ public class Medico {
         this.telefone = dados.telefone();
         this.endereco = new Endereco(dados.endereco());
     }
+
+    public void atualizarInformacoes(DadosAtualizacaoMedico dados){
+        if (dados.nome() != null){
+            if (dados.nome().isBlank()){
+                throw new IllegalArgumentException("Nome não pode estar em branco");
+            }
+            this.nome = dados.nome();
+        }
+        if (dados.telefone() != null){
+            if (dados.telefone().isBlank()){
+                throw new IllegalArgumentException("Telefone não pode estar em branco.");
+            }
+            this.telefone = dados.telefone();
+        }
+        if (dados.endereco() != null){
+            this.endereco.atualizarInformacoes(dados.endereco());
+        }
+    }
+
     
+    public void excluir(){
+        this.ativo = false;
+    }
 }

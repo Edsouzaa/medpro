@@ -28,4 +28,53 @@ public class Endereco {
         this.numero = endereco.numero();
         this.complemento = endereco.complemento();
     }
+
+    public void atualizarInformacoes(DadosEndereco dados){
+        if (dados.logradouro() != null){
+            if (dados.logradouro().isBlank()){
+                throw new IllegalArgumentException("Logradouro não pode estar em branco");
+            }
+            else{
+                this.logradouro = dados.logradouro();
+            }
+        }
+        if (dados.bairro() != null){
+            if (bairro.isBlank()){
+                throw new IllegalArgumentException("Bairro pode não estar em branco.");
+            }
+            else{
+                this.bairro = dados.bairro();
+            }
+        }
+        if (dados.cep() != null){
+            if (cep.isBlank()){
+                throw new IllegalArgumentException("CEP não pode estar em branco.");
+            }
+            else{
+                this.cep = dados.cep();
+            }
+        }
+        if (dados.cidade() != null){
+            if (cidade.isBlank()){
+                throw new IllegalArgumentException("Cidade não pode estar em branco.");
+            }
+            else{
+                this.cidade = dados.cidade();
+            }
+        }
+        if (dados.uf() != null){
+            if (uf.isBlank()){
+                throw new IllegalArgumentException("UF não pode estar em branco.");
+            }
+            else{
+                this.uf = dados.uf();
+            }
+        }
+        if (dados.numero() != null){
+            this.numero = dados.numero();
+        }
+        if (dados.complemento() != null){
+            this.complemento = dados.complemento();
+        }
+    }
 }
