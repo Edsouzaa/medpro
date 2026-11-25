@@ -40,7 +40,7 @@ public class Medico {
     @Embedded
     private Endereco endereco;
 
-    private TinyInt ativo;
+    private Boolean ativo;
 
     public Medico(DadosCadastroMedico dados){
         this.nome = dados.nome();
